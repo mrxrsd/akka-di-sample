@@ -13,7 +13,8 @@ namespace AkkaHost.Domain.Actors
 
         private void GetClientByIdHandler(GetClientById input)
         {
-            var store = Context.ActorOf(ServiceProvider.For(Context.System).Props<ClientActorStore>());
+            // mixin  DI Args and static args! 
+            var store = Context.ActorOf(ServiceProvider.For(Context.System).Props<ClientActorStore>("arg1","arg2"));
             store.Forward(input);
         }
     }
